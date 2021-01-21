@@ -27,5 +27,10 @@ Du kommer även under arbetets gång få miniföreläsningar om hur du kan göra
 
 ![tid](tid.png)
 
+## Skiss
 
+![skiss](skiss.jpg)
 
+## ER-diagram
+
+![er](er.jpg)
