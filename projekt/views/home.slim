@@ -1,0 +1,9 @@
+nav 
+    a href="/plans/new" New plan
+
+
+ul 
+    -todos.each do |todo|
+    li = todo["content"]
+    a href="delete/#{todo['id']}" Delete
+    a href="edit/#{todo['id']}" Edit

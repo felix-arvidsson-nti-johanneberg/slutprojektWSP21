@@ -6,11 +6,19 @@ require 'bcrypt'
 enable :sessions
 
 get('/') do
-    slim (:index)
+    slim(:index)
+end
+
+get('/home') do
+    slim(:home)
 end
 
 get('/showlogin') do
     slim(:login)
+end
+
+get('/register') do
+  slim(:register)
 end
 
 post('/login') do
@@ -23,7 +31,7 @@ post('/login') do
     id = result["id"]
     if BCrypt::Password.new(pwdigest) == password
       session[:id] = id
-      redirect('/todos')
+      redirect('/home')
     else
       "FEEEl"
     end
