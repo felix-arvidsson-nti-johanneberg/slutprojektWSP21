@@ -9,8 +9,8 @@ get('/') do
     slim(:index)
 end
 
-get('/home') do
-    slim(:home)
+get('/plans/') do
+    slim(:plans)
 end
 
 get('/showlogin') do
@@ -31,7 +31,7 @@ post('/login') do
     id = result["id"]
     if BCrypt::Password.new(pwdigest) == password
       session[:id] = id
-      redirect('/home')
+      redirect('/plans/')
     else
       "FEEEl"
     end
@@ -50,7 +50,7 @@ post('/users/new') do
         password_digest = BCrypt::Password.create(password)
         db = SQLite3::Database.new('db/databas.db')
         db.execute("INSERT INTO users (username,pwdigest) VALUES (?,?)",username,password_digest)
-        redirect("/home")
+        redirect("/plans/")
     else
         "the passwords don't match"
     end
