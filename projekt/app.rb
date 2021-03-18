@@ -13,6 +13,10 @@ get('/plans/') do
     slim(:plans)
 end
 
+post('/plans') do
+
+end
+
 get('/showlogin') do
     slim(:login)
 end

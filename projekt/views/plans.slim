@@ -3,7 +3,7 @@ nav
 
 
 ul 
-    -todos.each do |todo|
-    li = todo["content"]
-    a href="delete/#{todo['id']}" Delete
-    a href="edit/#{todo['id']}" Edit
+    -plans.each do |plan|
+    li = plan["content"]
+    a href="delete/#{plan['id']}" Delete
+    a href="edit/#{plan['id']}" Edit
