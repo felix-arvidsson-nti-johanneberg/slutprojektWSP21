@@ -10,11 +10,50 @@ get('/') do
 end
 
 get('/plans/') do
-    slim(:plans)
+    
+  db = SQLite3::Database.new('db/databas.db')
+  db.results_as_hash = true
+  result = db.execute("SELECT * FROM personal_plans")
+  slim(:plans,locals:{plans:result})
+
+
+end
+
+get('/plans/new') do
+  slim(:new)
 end
 
 post('/plans') do
+  content = params[:content]
+  id = session[:id].to_i
 
+  db = SQLite3::Database.new('db/databas.db')
+  db.execute("INSERT INTO personal_plans (content, user_id) VALUES (?,?)",content,user_id)
+  redirect('/plans/')
+end
+
+get('/plans/:id/edit') do
+  
+  id = params[:id].to_i
+  db = SQLite3::Database.new('db/databas.db')
+  db.results_as_hash = true
+  result = db.execute("SELECT * FROM personal_plans WHERE id = ?", id).first
+  slim(:"/plans/edit",locals:{result:result})
+end
+
+post("/plans/:id/update") do
+  id = params[:id].to_i
+  content = params[:content]
+  db = SQLite3::Database.new('db/databas.db')
+  db.execute("UPDATE personal_plans SET content = ? WHERE id = ?", content, id)
+  redirect('/plans/')
+end
+
+get('/delete/:id') do
+  id = params[:id].to_i
+  db = SQLite3::Database.new('db/databas.db')
+  db.execute("DELETE FROM personal_plans WHERE id = '#{id}'")
+  redirect to('/plans/')
 end
 
 get('/showlogin') do
