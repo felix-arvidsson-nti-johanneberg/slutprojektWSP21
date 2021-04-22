@@ -5,6 +5,8 @@ require 'bcrypt'
 
 enable :sessions
 
+include Model
+
 get('/') do
     slim(:index)
 end
