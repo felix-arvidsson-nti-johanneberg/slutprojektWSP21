@@ -37,7 +37,7 @@ post('/login') do
       session[:id] = id
       redirect('/plans/')
     else
-      "FEEEl"
+      "De lösenorden matchar inte"
     end
   
   
