@@ -6,5 +6,5 @@ ul
     -plans.each do |plan|
         li
             p = plan ["content"]
-            a href="delete/#{plans['id']}" Delete
-            a href="edit/#{plans['id']}" Edit
+            a href="delete/#{plan['id']}" Delete
+            a href="/plans/#{plan['id']}/edit" Edit
