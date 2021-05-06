@@ -96,7 +96,7 @@ post('/users/new') do
         password_digest = BCrypt::Password.create(password)
         db = SQLite3::Database.new('db/databas.db')
         db.execute("INSERT INTO users (username,pwdigest) VALUES (?,?)",username,password_digest)
-        redirect("/plans/")
+        redirect("/")
     else
         "the passwords don't match"
     end
