@@ -22,6 +22,25 @@ get('/plans/') do
 
 end
 
+get('/groups/') do
+  db = SQLite3::Database.new('db/databas.db')
+  db.results_as_hash = true
+  result = db.execute("SELECT * FROM groups INNER JOIN users")
+  slim(:groups,locals:{groups:result})
+end
+
+get('/groups/new') do
+  slim(:gnew)
+end
+
+post('/groups') do
+  groupname = params[:groupname]
+
+  db = SQLite3::Database.new('db/databas.db')
+  db.execute("INSERT INTO groups (groupname) VALUES (?)",groupname)
+  redirect('/groups/')
+end
+
 get('/plans/new') do
   slim(:new)
 end
