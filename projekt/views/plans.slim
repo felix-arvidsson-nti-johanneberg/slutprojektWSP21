@@ -1,10 +1,11 @@
 nav 
+    a href="/groups"
+
     a href="/plans/new" New plan
-
-
 ul 
     -plans.each do |plan|
         li
             p = plan ["content"]
-            a href="delete/#{plan['id']}" Delete
+            form action="/plans/#{plan['id']}/delete" method="post" 
+                input type="submit" value="delete"
             a href="/plans/#{plan['id']}/edit" Edit

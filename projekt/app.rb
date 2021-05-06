@@ -52,10 +52,10 @@ post("/plans/:id/update") do
   redirect('/plans/')
 end
 
-get('/plans/delete/:id') do
+post('/plans/:id/delete') do
   id = params[:id].to_i
   db = SQLite3::Database.new('db/databas.db')
-  db.execute("DELETE FROM personal_plans WHERE id = '#{id}'")
+  db.execute("DELETE FROM personal_plans WHERE id = ?", id)
   redirect to('/plans/')
 end
 
