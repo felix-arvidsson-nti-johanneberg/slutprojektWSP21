@@ -23,9 +23,10 @@ get('/plans/') do
 end
 
 get('/groups/') do
+  id = sessions[:id].to_i
   db = SQLite3::Database.new('db/databas.db')
   db.results_as_hash = true
-  result = db.execute("SELECT * FROM groups INNER JOIN users")
+  result = db.execute("SELECT * FROM users_groups_rel WHERE user_id = ?",id)
   slim(:groups,locals:{groups:result})
 end
 
