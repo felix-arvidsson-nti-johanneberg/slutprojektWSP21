@@ -41,6 +41,15 @@ post('/groups') do
   redirect('/groups/')
 end
 
+post('/join') do
+  groupname = params[:groupname]
+  id = session[:id].to_i
+  db = SQLite3::Database.new('db/databas.db')
+  group_id = db.execute("SELECT id FROM groups WHERE groupname = ?",groupname)
+  db.execute("INSERT INTO users_groups_rel (group_id, user_id) VALUES (?,?)",group_id,id)
+  redirect('/groups/')
+end
+
 get('/plans/new') do
   slim(:new)
 end
